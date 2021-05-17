@@ -1,0 +1,40 @@
+﻿@using System.Web.Optimization
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Structure.Model.DocumentTypes.Master>
+<!DOCTYPE html>
+<html>
+<head class="no-js">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @*@if (Model.MetaData != null)
+    {
+        { Html.RenderPartial("SiteLayout/_MetaData", Model.MetaData); }
+    }*@
+    @*@Styles.Render("~/bundles/Style.css")
+    @Styles.Render("/bundles/Site.css")*@
+</head>
+<body>
+    <div class="wrapper">
+        <header id="header-wrap">
+            @*@if (Model.Header != null)
+            {
+                @Html.CachedPartial("SiteLayout/_MainNavigation", Model.Header, 3600)
+            }*@
+        </header>
+        <main role="main" class="bg-gray">
+            @RenderBody()
+        </main>
+        <footer class="footer">
+            @*@Html.CachedPartial("SiteLayout/_Footer", Model.Footer, 3600)*@
+        </footer>
+        <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="loader" id="loader-1"></div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    @*@Scripts.Render("~/bundles/JSLib.js")
+    @Scripts.Render("~/bundles/Site.js")*@
+</body>
+</html>
+
