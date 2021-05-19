@@ -250,18 +250,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composing\BaseControllerComposer.cs" />
+    <Compile Include="Composing\BundleComposer.cs" />
     <Compile Include="Composing\WebComposer.cs" />
+    <Compile Include="Controllers\Base\BaseSurfaceController.cs" />
     <Compile Include="Controllers\Base\MasterController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Enums\EmailType.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="ModelsBuilder\HomePageBuilder.cs" />
     <Compile Include="ModelsBuilder\MasterBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Configuration.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Utilities\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\SurfaceControllers\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

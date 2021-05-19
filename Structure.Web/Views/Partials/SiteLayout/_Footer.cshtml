@@ -1,0 +1,77 @@
+﻿@model NTB.SiteCompany.Model.ViewModel.MasterPage.FooterVM
+<div class="footer-main-content">
+    <div class="left box">
+        <h2>@Model.TitleAboutUs</h2>
+        <div class="footer-content">
+            <p>
+                @Html.Raw(Model.ShortDescriptionAbout)
+            </p>
+            <div class="social">
+                @foreach (var socialItem in Model.SocialLinks)
+                {
+                    <a href="@socialItem.LinkUrl"><span class="@socialItem.ClassIcon"></span></a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="center box">
+        <h2>Quick Access</h2>
+        <div class="footer-content">
+            @if (Model.RootPage.Children(x => x.IsVisible()).Any())
+            {
+                @* For each child page under the home node, where the property umbracoNaviHide is not True *@
+                <ul class="footer-accordion">
+                    @foreach (var childPage in Model.RootPage.Children(x => x.IsVisible()))
+                    {
+                        if (childPage.Children(x => x.IsVisible()).Any())
+                        {
+                            <li class="footer-accordion-item">
+                                <h3 class="footer-accordion-thumb">@childPage.Name</h3>                                
+                                @childPages(childPage?.Children)
+                            </li>
+                        }
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+    <div class="right box">
+        <h2>@Model.Contact.TitleContact</h2>
+        <div class="footer-content">
+            <div class="place">
+                <a href="@Model.Contact.ContactPageURL"><span class="fa fa-map-marker"></span></a>
+                <span class="text">@Model.Contact.Address</span>
+            </div>
+            <div class="phone">
+                <span class="fa fa-phone"></span>
+                <span class="text">@Model.Contact.Phone</span>
+            </div>
+            <div class="email">
+                <a href="@Model.Contact.ContactPageURL"><span class="fa fa-envelope"></span></a>
+                <span class="text">@Model.Contact.Email</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom">
+    <center>
+        <p>
+            <span class="credit">Copyright &copy; @DateTime.Now.Year <a href="@Model.HomepageUrl">@Model.Copyright</a></span>
+        </p>
+    </center>
+</div>
+
+@helper childPages(IEnumerable<IPublishedContent> pages)
+{
+    if (pages != null && pages.Where(x => x.IsVisible()).Any())
+    {
+        <ul class="footer-accordion-panel">
+            @foreach (var page in pages.Where(x => x.IsVisible()))
+            {
+                <li>
+                    <a class="grey-text text-lighten-3" href="@page.Url">@page.Name</a>
+                </li>
+            }
+        </ul>
+    }
+}

@@ -1,0 +1,102 @@
+﻿@using Umbraco.Web.Composing;
+@model NTB.SiteCompany.Model.ViewModel.MasterPage.HeaderVM
+@{
+    var umbracoHelper = Umbraco.Web.Composing.Current.UmbracoHelper;
+    var currentCulture = umbracoHelper.CultureDictionary.Culture.Name;
+}
+
+@if (Model == null) { return; }
+
+<div class="header-content">
+    <div class="row align-items-center">
+        <div class="col-5 col-sm-3 col-md-2">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            @if (Model.LogoTop != null)
+            {
+                <a href="@Model.HomepageUrl" class="navbar-brand">
+                    <img src="@Url.GetCropUrl(Model.LogoTop, 200, 50)" alt="img">
+                </a>
+            }
+        </div>
+        <div class="col-7 col-sm-9 col-md-10 text-right">
+            <div class="top-navbar d-inline-block d-md-block">
+                <ul class="top-subnav-list">
+                    @foreach (var language in Model.MultiLanguage)
+                    {
+                        if (!string.IsNullOrEmpty(language.Key) &&
+                            !string.Equals(language.Key, currentCulture,
+                            comparisonType: StringComparison.OrdinalIgnoreCase))
+                        {
+                            <li class="top-subnav-item top-subnav-item-desktop">
+                                <a href="@language.Value" class="top-subnav-link">
+                                    @umbracoHelper.GetDictionaryValue(key: "language-" + language.Key)
+                                </a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="top-subnav-item top-subnav-item-desktop">
+                                <a href="" class="top-subnav-link top-subnav-link-active">
+                                    @umbracoHelper.GetDictionaryValue(key: "language-" + currentCulture)
+                                </a>
+                            </li>
+                        }
+                    }
+                    <li class="top-subnav-item top-subnav-link-search">
+                        <input type="text" class="form-control header-search-input" placeholder="Search.." aria-label="search" />
+                        <a href="#" class="top-subnav-link">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-menu d-inline-block d-md-block">
+                <!-- Navbar Start -->
+                <nav class="navbar navbar-expand-md has-background-white">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" 
+                                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="lni-menu"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            @if (Model?.PrimaryNavigation?.Items != null && Model.PrimaryNavigation.Items.Any())
+                            {
+                                <ul class="navbar-nav mr-auto w-100 justify-content-end clearfix">
+                                    @foreach (var item in Model.PrimaryNavigation.Items)
+                                    {
+                                        <li class="nav-item @(item.IsAncestor ? "active" : "") @(item.HasChildren ? "dropdown": "")">
+
+                                            @if (!item.HasChildren || item.HideChildrenFromNavigation)
+                                            {
+                                                <a href="@item.Url" class="nav-link">@item.Title</a>
+                                            }
+                                            else if (item.HasChildren && !item.HideChildrenFromNavigation)
+                                            {
+                                                <span class="nav-list-subtoggle"></span>
+                                                <a href="@item.Url"
+                                                   class="nav-link @(item.HasChildren ? "dropdown-toggle" : "")"
+                                                   id="navbarDropdownMenuLink"
+                                                   role="button"
+                                                   data-toggle="dropdown"
+                                                   aria-haspopup="true"
+                                                   aria-expanded="false">@item.Title</a>
+
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    @foreach (var childNavItem in item.Children)
+                                                    {
+                                                        <a class="dropdown-item" href="@childNavItem.Url">@childNavItem.Title</a>
+                                                    }
+                                                </div>
+                                            }
+                                        </li>
+                                    }
+                                    <li class="nav-item nav-item-language d-sm-none"><a class="nav-link text-danger">@umbracoHelper.GetDictionaryValue(key: "language-" + currentCulture)</a></li>
+                                </ul>
+                            }
+                        </div>                   
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

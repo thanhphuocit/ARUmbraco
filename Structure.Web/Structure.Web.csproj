@@ -331,6 +331,9 @@
     <Content Include="Views\Partials\BlockList\Default.cshtml" />
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\Master.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_Footer.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_MainNavigation.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_MetaData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
