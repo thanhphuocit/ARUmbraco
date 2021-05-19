@@ -1,0 +1,58 @@
+
+Composite:
+----------------------------
+1, Site Control
+ SectionName: Site
+ 
+ + SiteName => Textstring
+ + Description => Textstring
+ + SmallIconSite => Media Picker
+ + LogoTop => Media Picker
+----------------------------  
+
+-----------------------------
+2, Navigation Controls
+ SectionName: Navigation
++ Umbraco Navi Hide => True/false
+Tick this box if you want to hide it from the site.
+
++ HideChildrenFromNavigation=> true/false
+Tick this box if you want to disable the 
+dropdown for this item
+
++ Text Only In Navigation => True/false
+Tick this box if you want this item to be just text 
+only in the navigation menu.
+
+Display SubPages=> True/false
+-----------------------------
+
+-------------------------------
+3, About US
+Content About US
+Title => Textstring
+Subtitle =>Textstring
+Description => Richtext editor
+ButtonName => Textstring
+Button Link => Multi Url Picker
+Video Url => Multi Url Picker
+
+-------------------------------
+
+--------------------------------
+4,Footer Content Controls
+SectionName: About Footer
++titleAboutUsfooter => Textstring
++shortDescription => Richtext editor
++copyright
+SectionName: Social Footer
++ linksSocial => Nested Content
+SectionName: Contact Fotter
++ titleContactSection => Textstring
++ Address => Textstring
++ Phone => Textstring
++ Email => Email address
++ contactPageLink =>Contact Page Link
+
+--------------------------------
+

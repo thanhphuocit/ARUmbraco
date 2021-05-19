@@ -27,8 +27,11 @@ namespace Structure.Core.ModelsBuilder
             if (model == null) throw new ArgumentNullException(nameof(model));
             var homePage = model.GetHomepage();
             if (homePage == null) return model;
-
             model.Homepage = homePage;
+            model.MetaData = MapMetaData(model);
+            model.Header = MapHeader(model);
+            model.Footer = MapFooter(model);
+            model.Breadcrumbs = MapBreadcrumbs(model);
             return model;
         }
         private MetaDataVM MapMetaData(Master model)
