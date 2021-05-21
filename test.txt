@@ -56,3 +56,10 @@ SectionName: Contact Fotter
 
 --------------------------------
 
+5, Icon link
+Setion Content Link:
+Title Link => Textstring
+Tooltip => Textstring
+LinkUrl => Multi Url Picker
+CLassIcon => Textstring
+
